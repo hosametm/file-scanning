@@ -1,0 +1,18 @@
+{
+    "name": "hosametm/file-scanning",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hosametm\\FileScanning\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hosametm",
+            "email": "hosammetman@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
