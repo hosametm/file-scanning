@@ -1,5 +1,6 @@
 {
     "name": "hosametm/file-scanning",
+    "description": "A Laravel package for secure file scanning and validation",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -14,5 +15,20 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0|^10.0",
+        "symfony/mime": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0|^8.0",
+        "phpunit/phpunit": "^9.5|^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hosametm\\FileScanning\\FileScannerServiceProvider"
+            ]
+        }
+    }
 }
