@@ -18,16 +18,17 @@ php artisan vendor:publish --tag=file-scanning-config
 
 ## Configuration
 
-The configuration file (`config/file-scanning.php`) contains two main sections:
+The configuration file (`config/file-scanning.php`) contains three main sections:
 
-1. `mime_types`: A list of allowed file extensions and their corresponding MIME types
-2. `malicious_mime_types`: A list of MIME types that are considered potentially malicious
+1. `temp_directory`: The directory where temporary files will be stored when downloading files from URLs (defaults to system temp directory)
+2. `mime_types`: A list of allowed file extensions and their corresponding MIME types
+3. `malicious_mime_types`: A list of MIME types that are considered potentially malicious
 
-You can customize these lists according to your needs.
+You can customize these settings according to your needs.
 
 ## Usage
 
-### Basic Usage
+### Basic Usage with File Uploads
 
 ```php
 use Hosametm\FileScanning\FileScanner;
@@ -45,8 +46,35 @@ class YourController extends Controller
     {
         $file = $request->file('file');
         
-        if ($this->fileScanner->validate($file->getPathname())) {
+        if ($this->fileScanner->validateUpload($file)) {
             // File is valid, proceed with upload
+        } else {
+            // File is invalid or potentially malicious
+        }
+    }
+}
+```
+
+### Validating Files from URLs
+
+```php
+use Hosametm\FileScanning\FileScanner;
+
+class YourController extends Controller
+{
+    protected $fileScanner;
+
+    public function __construct(FileScanner $fileScanner)
+    {
+        $this->fileScanner = $fileScanner;
+    }
+
+    public function validateUrl(Request $request)
+    {
+        $url = $request->input('file_url');
+        
+        if ($this->fileScanner->validateUrl($url)) {
+            // File from URL is valid, proceed with processing
         } else {
             // File is invalid or potentially malicious
         }
@@ -56,9 +84,19 @@ class YourController extends Controller
 
 ### Available Methods
 
-#### Validate a File
+#### Validate a File Path
 ```php
 $fileScanner->validate(string $filePath): bool
+```
+
+#### Validate an Uploaded File
+```php
+$fileScanner->validateUpload(\Illuminate\Http\UploadedFile $file): bool
+```
+
+#### Validate a File from URL
+```php
+$fileScanner->validateUrl(string $url): bool
 ```
 
 #### Get File MIME Type
@@ -82,6 +120,8 @@ This package helps protect your application by:
 - Validating file MIME types
 - Blocking potentially malicious file types
 - Providing a configurable whitelist of allowed file types
+- Securely handling file uploads and URL downloads
+- Automatically cleaning up temporary files
 
 ## Contributing
 

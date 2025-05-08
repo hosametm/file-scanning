@@ -1,6 +1,27 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Temporary Directory
+    |--------------------------------------------------------------------------
+    |
+    | This is the directory where temporary files will be stored when downloading
+    | files from URLs for scanning. The default is the system's temp directory.
+    |
+    */
+    'temp_directory' => sys_get_temp_dir(),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Allowed MIME Types
+    |--------------------------------------------------------------------------
+    |
+    | This is the list of MIME types that are allowed to be uploaded.
+    | If this array is empty, all MIME types will be allowed except those
+    | listed in the malicious_mime_types array.
+    |
+    */
     "mime_types" => [
         "mov" => "video/quicktime",
         "mp4" => "video/mp4",
@@ -18,6 +39,16 @@ return [
         "jpg" => "image/jpeg",
         "jpeg" => "image/jpeg"
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Malicious MIME Types
+    |--------------------------------------------------------------------------
+    |
+    | This is the list of MIME types that are considered malicious and will be
+    | rejected regardless of the allowed_mime_types setting.
+    |
+    */
     'malicious_mime_types' => [
         "application/x-msdownload",
         "application/x-pkcs12",

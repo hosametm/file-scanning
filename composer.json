@@ -24,7 +24,9 @@
     "require": {
         "php": "^8.0",
         "illuminate/support": "^9.0|^10.0",
-        "symfony/mime": "^6.0"
+        "symfony/mime": "^6.0",
+        "ext-curl": "*",
+        "illuminate/http": "^9.0|^10.0"
     },
     "require-dev": {
         "orchestra/testbench": "^7.0|^8.0",
