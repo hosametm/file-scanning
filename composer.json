@@ -3,6 +3,12 @@
     "description": "A Laravel package for secure file scanning and validation",
     "type": "library",
     "license": "MIT",
+    "keywords": ["laravel", "file", "scanning", "validation", "security", "mime-type"],
+    "homepage": "https://github.com/hosametm/file-scanning",
+    "support": {
+        "issues": "https://github.com/hosametm/file-scanning/issues",
+        "source": "https://github.com/hosametm/file-scanning"
+    },
     "autoload": {
         "psr-4": {
             "Hosametm\\FileScanning\\": "src/"
@@ -14,7 +20,7 @@
             "email": "hosammetman@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
         "illuminate/support": "^9.0|^10.0",
@@ -30,5 +36,8 @@
                 "Hosametm\\FileScanning\\FileScannerServiceProvider"
             ]
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
